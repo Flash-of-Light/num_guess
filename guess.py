@@ -2,23 +2,33 @@
 
 import random as rand
 
+def newNumber():
+    newNumber.x = rand.randint(1,5)
+def newGuess():
+    newGuess.guess = int(input("Guess a number!"))
+# code to test newNumber()
+# newNumber()
+# print(newNumber.x)
+win = 0
 
-x = rand.randint(1,5)
-guess = int(input("Guess a number!"))
-
-def check(x, guess):
-    if x == guess:
-        print("You guessed right!")
-        win=0
+def startGame():
+    # newNumber()
+    if newNumber.x == newGuess.guess:
+        print("You guessed right! New game!")
+        global win
         win += 1
         print("Total wins:" + str(win))
-    elif x > guess:
+        newNumber()
+        newGuess()
+        startGame()
+    elif newNumber.x > newGuess.guess:
         print("You guessed too low!")
-        guess = int(input("Guess a number!"))
-        check(x, guess)
-    elif x < guess:
+        newGuess()
+        startGame()
+    elif newNumber.x < newGuess.guess:
         print("You guessed too high")
-        guess = int(input("Guess a number!"))
-        check(x, guess)
-
-check(x, guess)
+        newGuess()
+        startGame()
+newNumber()
+newGuess()
+startGame()
